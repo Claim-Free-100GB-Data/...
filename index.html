@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রমজান অফার</title>
+    <style>
+        /* CSS স্টাইল */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a2e38;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a2e38, #1a535c, #4ecdc4);
+            background-size: 400% 400%;
+            animation: rgbAnimation 10s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes rgbAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            outline: none;
+        }
+
+        input[type="text"]::placeholder {
+            color: #ccc;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background-color: #ffd700;
+            color: #0a2e38;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffc107;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .mosque-image {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('stars.png') repeat;
+            animation: twinkle 5s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .lanterns {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('lanterns.png') repeat;
+            animation: floatLanterns 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes floatLanterns {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- প্রথম পৃষ্ঠা -->
+    <div id="page1" class="page">
+        <div class="background-animation"></div>
+        <div class="stars"></div>
+        <div class="lanterns"></div>
+        <img src="mosque.png" alt="Mosque" class="mosque-image">
+        <h1>রমজান মোবারক!</h1>
+        <p>আপনার মোবাইল নম্বর সাবমিট করুন এবং ১০০ GB ফ্রি ডেটা পান!</p>
+        <input type="text" id="phoneNumber" placeholder="মোবাইল নম্বর">
+        <button onclick="submitNumber()">সাবমিট করুন</button>
+    </div>
+
+    <!-- দ্বিতীয় পৃষ্ঠা -->
+    <div id="page2" class="page hidden">
+        <h2>৫ জনকে মেসেজ পাঠান</h2>
+        <p id="counter">০/৫ জনকে মেসেজ পাঠানো হয়েছে</p>
+        <div class="social-buttons">
+            <button onclick="shareOnWhatsApp()">WhatsApp</button>
+            <button onclick="shareOnTelegram()">Telegram</button>
+            <button onclick="shareOnMessenger()">Messenger</button>
+        </div>
+        <button onclick="copyLink()">লিঙ্ক কপি করুন</button>
+    </div>
+
+    <!-- তৃতীয় পৃষ্ঠা -->
+    <div id="page3" class="page hidden">
+        <h2>আপনার ফ্রি ডেটা ক্লেইম করুন</h2>
+        <p id="signup-counter">০/৩ সাইন আপ সম্পন্ন হয়েছে</p>
+        <button id="button1" onclick="signUp('https://custom-link-20gb.com', 'button1')">Sign up to claim 20 GB</button>
+        <button id="button2" onclick="signUp('https://www.effectiveratecpm.com/uxkuvqs9h?key=cf09ccc89f237479f5c8cf2571ee940a', 'button2')">Sign up to claim 30 GB</button>
+        <button id="button3" onclick="signUp('https://www.effectiveratecpm.com/fxicamgx?key=701d58f5c1529f5c9270dde9cd558f45', 'button3')">Sign up to claim 50 GB</button>
+    </div>
+
+    <!-- শেষ পৃষ্ঠা -->
+    <div id="page4" class="page hidden">
+        <h2>অভিনন্দন!</h2>
+        <p>আপনি সফলভাবে ১০০ GB ফ্রি ডেটা ক্লেইম করেছেন!</p>
+        <div class="emoji-animation">🎉 🎊</div>
+        <p>২৪ ঘন্টার মধ্যে আপনার MB পেয়ে যাবেন।</p>
+    </div>
+
+    <script>
+        // JavaScript কোড
+        let sharedCount = 0;
+        let signupCount = 0;
+
+        function submitNumber() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (phoneNumber) {
+                document.getElementById('page1').classList.add('hidden');
+                document.getElementById('page2').classList.remove('hidden');
+            } else {
+                alert('দয়া করে আপনার মোবাইল নম্বর সাবমিট করুন।');
+            }
+        }
+
+        function shareOnWhatsApp() {
+            const message = encodeURIComponent("রমজান বিশেষ অফার! ১০০ GB ফ্রি ডেটা পেতে এই লিঙ্কে ক্লিক করুন: Claim-Free-100GB-Data.github.io.../");
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+            sharedCount++;
+            updateCounter();
+        }
+
+        function shareOnTelegram() {
+            const message = encodeURIComponent("রমজান বিশেষ অফার! ১০০ GB ফ্রি ডেটা পেতে এই লিঙ্কে ক্লিক করুন: Claim-Free-100GB-Data.github.io.../");
+            window.open(`https://t.me/share/url?url=${message}`, '_blank');
+            sharedCount++;
+            updateCounter();
+        }
+
+        function shareOnMessenger() {
+            const message = encodeURIComponent("রমজান বিশেষ অফার! ১০০ GB ফ্রি ডেটা পেতে এই লিঙ্কে ক্লিক করুন: Claim-Free-100GB-Data.github.io.../");
+            window.open(`https://www.facebook.com/dialog/send?link=${message}&app_id=YOUR_APP_ID`, '_blank');
+            sharedCount++;
+            updateCounter();
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText('Claim-Free-100GB-Data.github.io.../');
+            alert('লিঙ্ক কপি করা হয়েছে!');
+        }
+
+        function updateCounter() {
+            const counter = document.getElementById('counter');
+            counter.textContent = `${sharedCount}/৫ জনকে মেসেজ পাঠানো হয়েছে`;
+            if (sharedCount >= 5) {
+                document.getElementById('page2').classList.add('hidden');
+                document.getElementById('page3').classList.remove('hidden');
+            }
+        }
+
+        function signUp(link, buttonId) {
+            const button = document.getElementById(buttonId);
+            button.disabled = true;
+            button.style.backgroundColor = "#555";
+            signupCount++;
+            document.getElementById('signup-counter').textContent = `${signupCount}/৩ সাইন আপ সম্পন্ন হয়েছে`;
+
+            // নতুন উইন্ডোতে লিঙ্ক ওপেন করুন
+            window.open(link, '_blank');
+
+            // যদি ৩টি সাইন আপ সম্পন্ন হয়
+            if (signupCount >= 3) {
+                document.getElementById('page3').classList.add('hidden');
+                document.getElementById('page4').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
